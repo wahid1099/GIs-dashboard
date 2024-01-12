@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Titillium+Web:300"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"
+    />
+
+    <style>
+      input {
+        height: 3vh;
+        font-size: 0.75rem;
+      }
+      #end-date {
+        font-size: 1rem;
+      }
+      #start-date {
+        font-size: 1rem;
+      }
+
+      label {
+        color: #04aa6d;
+      }
+
+      home-main {
+        background-color: #04aa6d;
+        height: 100vh;
+        width: auto;
+      }
+
+      #map {
+        height: 700px;
+      }
+      #info {
+        margin-top: 10px;
+      }
+      .big-marker {
+        font-size: 44px; /* Adjust the font size as needed */
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Navigation, logo, and other header content -->
+      <div class="top-menu">
+        <div class="left">
+          <img src="/img/logo/ifrc logo.jpg" alt="Logo" />
+          <img src="/img/logo/BDRCS LOGO ENGLISH (2).png" alt="Logo" />
+          <img src="/img/logo/SRC logo.png" alt="Logo" />
+        </div>
+        <div class="middle">
+          <h3>
+            Bangladesh Red Crescent Society (BDRCS) and Swiss Red Cross (SRC)
+          </h3>
+          <h3>Partnership Projects</h3>
+        </div>
+        <div class="right">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <!--
+        <div class="profile-pic">
+          <img src="/img/logo/profile-pic.jpg" alt="Profile Picture" />
+        </div> -->
+      </div>
+      <div class="filter-container">
+        <div class="left-filter">
+          <div class="date-filter">
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" onchange="updateMap()" />
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" onchange="updateMap()" />
+          </div>
+        </div>
+        <div class="right-filter">
+          <div class="dropdown">
+            <button class="dropbtn">
+              Infrastructure Type
+              <i class="fa fa-caret-down fa-2x"></i>
+            </button>
+            <div class="dropdown-content">
+              <select id="stType" onchange="updateMap()">
+                <option value="all">All Types</option>
+              </select>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">
+              District
+              <i class="fa fa-caret-down fa-2x"></i>
+            </button>
+            <div class="dropdown-content">
+              <select id="district" onchange="updateMap()">
+                <option value="all">All Districts</option>
+              </select>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">
+              Upazila
+              <i class="fa fa-caret-down fa-2x"></i>
+            </button>
+            <div class="dropdown-content">
+              <select id="upazila" onchange="updateMap()">
+                <option value="all">All Upazilas</option>
+              </select>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">
+              Union
+              <i class="fa fa-caret-down fa-2x"></i>
+            </button>
+            <div class="dropdown-content">
+              <select id="union" onchange="updateMap()">
+                <option value="all">All Unions</option>
+              </select>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">
+              Village
+              <i class="fa fa-caret-down fa-2x"></i>
+            </button>
+            <div class="dropdown-content">
+              <select id="village" onchange="updateMap()">
+                <option value="all">All Villages</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <aside>
+      <!-- Sidebar content: icons and statistics -->
+      <nav class="main-menu">
+        <ul>
+          <li>
+            <a href="#">
+              <i class="fa fa-home fa-2x"></i>
+              <span class="nav-text"> Home </span>
+            </a>
+          </li>
+          <li class="has-subnav">
+            <a href="#">
+              <i class="fa fa-users fa-2x"></i>
+              <span class="nav-text"> About US </span>
+            </a>
+          </li>
+          <li class="has-subnav">
+            <a href="#">
+              <i class="fa fa-address-book fa-2x"></i>
+              <span class="nav-text"> Contact US </span>
+            </a>
+          </li>
+          <li class="has-subnav">
+            <a href="#">
+              <i class="fa fa-bell fa-2x"></i>
+              <span class="nav-text"> Notifications </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-gear fa-2x"></i>
+              <span class="nav-text"> Settings </span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-info fa-2x"></i>
+              <span class="nav-text"> Documentation </span>
+            </a>
+          </li>
+        </ul>
+        <ul class="logout">
+          <li>
+            <a href="#">
+              <i class="fa fa-power-off fa-2x"></i>
+              <span class="nav-text"> Logout </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <div>
+        <div class="container container-left">
+          <div>
+            <div class="card-left">
+              <a href="#">
+                <i class="fa fa-address-book fa-5x"></i>
+              </a>
+            </div>
+            <div class="card-right">
+              <h3>Total Infrastructure: <span id="totalStTypes">0</span></h3>
+              <h2 class="infra-filter">filter</h2>
+            </div>
+          </div>
+          <div>
+            <div class="card-left">
+              <a href="#">
+                <i class="fa fa-address-book fa-5x"></i>
+              </a>
+            </div>
+            <div class="card-right">
+              <h3>Total Beneficiary: <span id="totalBeneficiaries">0</span></h3>
+              <h2 class="ben-filter">filter</h2>
+            </div>
+          </div>
+          <div>
+            <div class="card-left">
+              <a href="#">
+                <i class="fa fa-address-book fa-5x"></i>
+              </a>
+            </div>
+            <div class="card-right">
+              <h3>Total coverage area:</h3>
+              <h2 class="infra-filter">
+                <span id="totalVillages">0</span> Village
+                <span id="totalUnions">0</span> Union
+              </h2>
+            </div>
+          </div>
+          <!--        <div>
+                <div class="card-left">
+                    <a href="#">
+                        <i class="fa fa-address-book fa-5x"></i>
+                      </a>
+                </div>
+                <div class="card-right">
+                  <h3>Total Infrastructure: 20000
+                  </h3>
+                  <h2 class="infra-filter">filter
+                </h2>
+                </div>
+            </div>
+            <div>
+                <div class="card-left">
+                    <a href="#">
+                        <i class="fa fa-address-book fa-5x"></i>
+                      </a>
+                </div>
+                <div class="card-right">
+                  <h3>Total Infrastructure: 20000
+                  </h3>
+                  <h2 class="infra-filter">filter
+                </h2>
+                </div>
+            </div> -->
+        </div>
+        <div class="container container-right">
+          <!-- <h4><b>John Doe</b></h4>
+          <p>Architect & Engineer</p> -->
+          <div id="map"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <!-- Footer content -->
+    </footer>
+    <script src="script.js" defer></script>
+    <script src="map.js" defer></script>
+    <script src="dropdown.js" defer></script>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Link to the external JavaScript file -->
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+  </body>
+</html>

@@ -1,0 +1,403 @@
+/* Basic structure and styles */
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header,
+footer {
+  background: #ffffff;
+  color: white;
+}
+
+aside {
+  width: 10vw;
+  background: #222;
+  color: white;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+  background-color: #7C898B;
+  padding-top: 3vh;
+  padding-left: 5vw;
+}
+
+
+
+
+
+/* Style for the top menu bar */
+.top-menu {
+  background-color: #ffffff;
+  /* Background color for the menu bar */
+  color: #fff;
+  /* Text color for the menu bar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 20px;
+  /* Adjust padding as needed */
+  margin-left: 3vw;
+  border-bottom: 1px solid #006f45;
+}
+
+/* Style for the left (logo) */
+.left img {
+  max-height: 5vh;
+  /* Adjust the maximum height of the logo */
+}
+
+/* Style for the middle (title) */
+.middle {
+  max-width: 50vw;
+}
+
+.middle h3 {
+  margin: 0;
+  text-align: center;
+  color: #04aa6d;
+}
+
+/* Style for the right (links) */
+.right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.right ul li {
+  display: inline;
+  margin-right: 20px;
+  /* Adjust spacing between links */
+}
+
+.right ul li:last-child {
+  margin-right: 0;
+  /* Remove margin from the last link */
+}
+
+.right ul li a {
+  color: #fff;
+  /* Text color for links */
+  text-decoration: none;
+  color: #f5333e;
+}
+
+.right ul li a:hover {
+  text-decoration: underline;
+  /* Add underline on hover */
+}
+
+.profile-pic {
+    margin-right: 10px; /* Adjust the spacing between the profile picture and links */
+    border-radius: 50%; /* Create a circular shape for the profile picture */
+    overflow: hidden; /* Hide the overflowing parts of the circular image */
+    width: 40px; /* Set the width and height to control the size of the picture */
+    height: 40px;
+}
+
+.profile-pic img {
+    width: 100%; /* Ensure the image fits within the circular container */
+    height: 100%;
+    object-fit: cover; /* Maintain the aspect ratio and cover the container */
+    border: 2px solid #fff; /* Add a white border around the profile picture */
+}
+
+
+/* Style for the filter container */
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px; /* Adjust padding as needed */
+  background-color: #ffffff;
+}
+
+/* Style for the left filter container */
+.left-filter {
+  flex: 1; /* Takes up available space in the left */
+  margin-left: 3vw;
+  padding-bottom: 0;
+}
+
+/* Style for the right filter container */
+.right-filter {
+  flex: 1; /* Takes up available space in the right */
+  text-align: right; /* Align elements in the right container to the right */
+}
+
+/* Style for the date filter and dropdown filter (adjust as needed) */
+.date-filter,
+.dropdown-filter {
+  /* Add margin between filters */
+  font-size: 1rem;
+}
+
+/* Style for the right filter container */
+.right-filter {
+  flex: 1; /* Takes up available space in the right */
+  text-align: right; /* Align elements in the right container to the right */
+}
+
+.dropbtn {
+  background-color: #ffffff;
+  color: white;
+  padding: 2px;
+  font-size: 1em;
+  border: none;
+  color: #04aa6d;
+  border: 1px solid #04aa6d;
+  margin-top: 2px;
+}
+
+.dropbtn .fa-2x {
+  font-size: 1.5em;
+}
+
+.dropbtn .fa {
+  width: 30px;
+  height: 30px;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+  color: #ffffff;
+}
+
+/* Sidebar */
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa {
+  position: relative;
+  display: table-cell;
+  width: 60px;
+  height: 36px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+.main-menu:hover,
+nav.main-menu.expanded {
+  width: 250px;
+  overflow: visible;
+}
+
+.main-menu {
+  background: #ffffff;
+  border-right: 1px solid #e5e5e5;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  width: 60px;
+  overflow: hidden;
+  -webkit-transition: width 0.05s linear;
+  transition: width 0.05s linear;
+  z-index: 1000;
+  border-right: 1px solid #006f45;
+}
+
+.main-menu > ul {
+  margin: 7px 0;
+}
+
+.main-menu li {
+  position: relative;
+  display: block;
+  width: 250px;
+  padding-top: 2vh;
+}
+
+.main-menu li > a {
+  position: relative;
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: #f5333e;
+  font-family: arial;
+  font-size: 1rem;
+  text-decoration: none;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.main-menu .nav-icon {
+  position: relative;
+  display: table-cell;
+  width: 60px;
+  height: 36px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+.main-menu .nav-text {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  width: 190px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 20px;
+}
+
+.main-menu > ul.logout {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.no-touch .scrollable.hover {
+  overflow-y: hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+  overflow-y: auto;
+  overflow: visible;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+nav {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+nav ul,
+nav li {
+  outline: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu li:hover > a,
+nav.main-menu li.active > a,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus,
+.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
+.dashboard-page nav.dashboard-menu ul li.active a {
+  color: #fff;
+  background-color: #006f45;
+}
+
+.area {
+  float: left;
+  background: #e2e2e2;
+  width: 100%;
+  height: 100%;
+}
+
+.main-menu li > a {
+  padding-top: 50px;
+}
+
+@font-face {
+  font-family: "Titillium Web";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Titillium WebLight"), local("TitilliumWeb-Light"),
+    url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff)
+      format("woff");
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container{
+    padding: 2px 16px;
+    background-color: #ddd;
+    margin-top: 0;
+    float: left;
+    border: solid 1px #b24114;
+    margin-right: 2vw;
+    height: 80vh;
+    border-radius: 10px;
+  }
+
+  .container-left{
+    width: 20vw;
+  }
+  .container-right{
+    width: 67vw;
+    margin-right: 0;
+  }
+
+.profile_img {
+	width: 80px;
+	height: 80px;
+
+	object-fit: cover;
+	object-position: 50% 50%;
+
+	border-radius: 100%;
+}
+
+.card-left {
+    margin-top: 30px;
+	margin-right: 2vw;
+    margin-left: 1vw;
+    float: left;
+}
+.card-right {
+    margin-top: 30px;
+	margin-left: 0.25vw;
+    float: left;
+}
+.card-right h3{
+	margin: 0;
+}
+.ben-filter .infra-filter{
+    text-align: center;
+}
